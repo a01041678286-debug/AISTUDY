@@ -1,0 +1,27 @@
+# 3회차에서 GitHub 저장소를 만든 뒤 아래 repo 줄을 "내아이디/내저장소이름"으로 바꾸세요.
+backend:
+  name: github
+  repo: "GITHUB-ID/REPOSITORY-NAME"
+  branch: main
+
+media_folder: "images/posts"
+public_folder: "images/posts"
+
+collections:
+  - name: posts
+    label: 소식
+    label_singular: 소식 글
+    folder: content/posts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: 제목, widget: string }
+      - { name: date, label: 작성일, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { name: category, label: 분류, widget: select, options: [소식, 안내, 후기, 정보], default: 소식 }
+      - { name: summary, label: 요약, widget: text, hint: "검색 결과와 글 카드에 보이는 짧은 설명입니다." }
+      - { name: image, label: 대표이미지, widget: image, required: false }
+      - { name: draft, label: 임시저장, widget: boolean, default: false, required: false, hint: "체크하면 홈페이지에 보이지 않습니다." }
+      - { name: body, label: 본문, widget: markdown }
